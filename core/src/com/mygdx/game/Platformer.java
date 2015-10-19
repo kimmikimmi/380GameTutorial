@@ -18,7 +18,7 @@ public class Platformer extends ApplicationAdapter {
 
 	private SceneLoader sceneLoader;
 	private Viewport viewport;
-	//private ItemWrapper root;
+
 	private Player player;
 	private UIStage uiStage;
 
@@ -32,30 +32,10 @@ public class Platformer extends ApplicationAdapter {
 
         ItemWrapper root = new ItemWrapper(sceneLoader.getRoot());
 
-		player = new Player();
+		player = new Player(sceneLoader.world);
         root.getChild("player").addScript(player);
 
 		uiStage = new UIStage(sceneLoader.getRm());
-
-//		sceneLoader.addComponentsByTagName("button", ButtonComponent.class);
-//		root.getChild("button").getEntity().getComponent(ButtonComponent.class).addListener(new ButtonComponent.ButtonListener() {
-//			@Override
-//			public void touchUp() {
-//
-//			}
-//
-//			@Override
-//			public void touchDown() {
-//
-//			}
-//
-//			@Override
-//			public void clicked() {
-//				System.out.println("it's clicked");
-//
-//			}
-//		});
-
 
 	}
 
@@ -71,7 +51,7 @@ public class Platformer extends ApplicationAdapter {
 		uiStage.draw();
 
 
-		((OrthographicCamera)viewport.getCamera()).position.set(player.getX(), player.getY(), 0);
+		((OrthographicCamera)viewport.getCamera()).position.x = player.getX() + player.getWidth()/2f;
 
 
 	}
